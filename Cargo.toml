@@ -1,0 +1,13 @@
+[package]
+name = "frosted2"
+version = "0.1.0"
+authors = ["maximevince <maxime.vince@gmail.com>"]
+
+[target.thumbv6-none-eabi.dependencies.core]
+git = "https://github.com/hackndev/rust-libcore"
+
+[target.thumbv7m-none-eabi.dependencies.core]
+git = "https://github.com/hackndev/rust-libcore"
+
+[target.thumbv7em-none-eabi.dependencies.core]
+git = "https://github.com/hackndev/rust-libcore"
