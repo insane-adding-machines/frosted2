@@ -1,7 +1,4 @@
-/*
-    GNU linker script for STM32F405
-*/
-
+/* Frosted - Linker script for stm32f4 */
 /* Specify the memory areas */
 MEMORY
 {
@@ -9,25 +6,15 @@ MEMORY
     RAM (xrw)       : ORIGIN = 0x20000000, LENGTH = 0x020000 /* 128 KiB */
 }
  
-/* top end of the stack */
-/*_stack_end = ORIGIN(RAM) + LENGTH(RAM);*/
-_estack = ORIGIN(RAM) + LENGTH(RAM) - 1;
-
-/* RAM extents for the garbage collector */
-_ram_end = ORIGIN(RAM) + LENGTH(RAM);
-_heap_end = 0x2001c000; /* tunable */
-
 /* define output sections */
 SECTIONS
 {
-    /* Not exceptions yet, discard this to prevent linker errors */
     /DISCARD/ :
     {
         *(.ARM.extab*)
         *(.ARM.exidx*)
     }
     
-    /* Meta-data, discard */
     /DISCARD/ :
     {
         *(.ARM.attributes*)
@@ -38,7 +25,6 @@ SECTIONS
     .isr_vector :
     {
         . = ALIGN(4);
-        LONG(_estack);       /* Initial stack pointer */
         KEEP(*(.isr_vector)) /* Startup code */
         KEEP(*(.syscall_vector))
         . = ALIGN(4);
@@ -48,10 +34,10 @@ SECTIONS
     .text :
     {
         . = ALIGN(4);
-        *(.text)           /* .text sections (code) */
-        *(.text*)          /* .text* sections (code) */
-        *(.rodata)         /* .rodata sections (constants, strings, etc.) */
-        *(.rodata*)        /* .rodata* sections (constants, strings, etc.) */
+        *(.text)           
+        *(.text*)          
+        *(.rodata)         
+        *(.rodata*)        
         . = ALIGN(4);
         _etext = .;        /* define a global symbol at end of code */
     } >FLASH
@@ -77,22 +63,22 @@ SECTIONS
     .data :
     {
         . = ALIGN(4);
-        _sdata = .;        /* create a global symbol at data start; used by startup code in order to initialise the .data section in RAM */
-        _ram_start = .;    /* create a global symbol at ram start for garbage collector */
-        *(.data)           /* .data sections */
-        *(.data*)          /* .data* sections */
-
+        _sdata = .;
+        _data = .;
+        _ram_start = .;
+        *(.data)
+        *(.data*)
         . = ALIGN(4);
-        _edata = .;        /* define a global symbol at data end; used by startup code in order to initialise the .data section in RAM */
+        _edata = .;    
     } >RAM AT> FLASH
             
     /* Uninitialized data section */
     .bss :
     {
         . = ALIGN(4);
-        /* define a global symbol at bss start; used by startup code */
         __bss_start__ = .;
         _sbss = .;
+        _bss = .;
         *(.bss)
         *(.bss*)
         *(COMMON)
@@ -107,19 +93,16 @@ SECTIONS
     .heap :
     {
         . = ALIGN(4);
-	PROVIDE ( end = . );
-	PROVIDE ( _end = . );
+	    PROVIDE ( end = . );
+	    PROVIDE ( _end = . );
     } >RAM
 
-    /* Remove information from the standard libraries */
-    /*
     /DISCARD/ :
     {
         libc.a ( * )
         libm.a ( * )
         libgcc.a ( * )
     }
-    */
 
     .ARM.attributes 0 : { *(.ARM.attributes) }
 }
