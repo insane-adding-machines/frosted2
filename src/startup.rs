@@ -1,6 +1,7 @@
 #![feature(no_std)]
 #![feature(asm)]
 #![feature(lang_items)]
+#![feature(linkage)]
 #![no_std]
 #![crate_type="staticlib"]
 #![allow(dead_code)]
@@ -8,10 +9,8 @@
 use core::option::Option;
 use core::option::Option::{Some, None};
 
-// Needed to satisfy the compiler.
 #[lang="stack_exhausted"] 
 extern fn stack_exhausted() {}
-
 #[lang="eh_personality"] 
 extern fn eh_personality() {}
 
@@ -162,151 +161,181 @@ pub unsafe extern "C" fn Reset_Handler() {
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn NMI_Handler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn HardFault_Handler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn MemManage_Handler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn BusFault_Handler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn UsageFault_Handler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn SVC_Handler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn DebugMon_Handler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn PendSV_Handler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn SysTick_Handler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn IntDefaultHandler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn UART0_IRQHandler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn UART1_IRQHandler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn SSI0_IRQHandler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn I2C0_IRQHandler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn PWMFault_IRQHandler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn PWM0_IRQHandler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn PWM1_IRQHandler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn PWM2_IRQHandler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn ADC0_IRQHandler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn ADC1_IRQHandler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn ADC2_IRQHandler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn ADC3_IRQHandler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn WDT_IRQHandler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn TIMER0_IRQHandler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn TIMER1_IRQHandler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn TIMER2_IRQHandler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn UART2_IRQHandler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn I2C1_IRQHandler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn ENET_IRQHandler() {
 }
 
 #[allow(non_snake_case)]
 #[no_mangle]
+#[linkage = "weak"]
 pub unsafe extern "C" fn __StackTop() {
 }
 
