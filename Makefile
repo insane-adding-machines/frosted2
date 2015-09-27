@@ -1,4 +1,5 @@
 PORT?=stm32f4
+
 KERNEL_OBJ:=startup.o
 
 all: image.bin

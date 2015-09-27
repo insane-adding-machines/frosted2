@@ -9,6 +9,12 @@
 use core::option::Option;
 use core::option::Option::{Some, None};
 
+//mod core_m3;
+//use core_m3::*;
+
+mod systick;
+use systick::*;
+
 #[lang="stack_exhausted"] 
 extern fn stack_exhausted() {}
 #[lang="eh_personality"] 
@@ -120,6 +126,9 @@ fn semihosting(command: u32, message: &[u32; 3]) {
 //------------------------------------------------------------------------------
 #[no_mangle]
 pub fn main() {
+
+    systick_init();
+
     loop 
     {
     };
@@ -205,12 +214,6 @@ pub unsafe extern "C" fn DebugMon_Handler() {
 #[no_mangle]
 #[linkage = "weak"]
 pub unsafe extern "C" fn PendSV_Handler() {
-}
-
-#[allow(non_snake_case)]
-#[no_mangle]
-#[linkage = "weak"]
-pub unsafe extern "C" fn SysTick_Handler() {
 }
 
 #[allow(non_snake_case)]
